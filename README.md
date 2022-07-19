@@ -1,6 +1,6 @@
 # EOSC-FUTURE-DASHBOARD
 
-This repository contains (EMSO-ERIC's)[https://emso.eu/] contribution to the (EOSC-FUTURE)[https://eoscfuture.eu/] project.
+This repository contains [EMSO-ERIC's](https://emso.eu/) contribution to the [EOSC-FUTURE](https://eoscfuture.eu/) project.
 
 The objective of this contribution is:
 
