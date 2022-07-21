@@ -69,7 +69,7 @@ def _tab_1_dropdown(sd_data: dict, provider: str):
     menu_options = []
     base = ''
     try:
-        base = sd_data['SD_URL']['base_url']
+        base = sd_data['SD_URL']['base_url'] 
         if 'parameters' in sd_data['SD_URL'].keys():
             if sd_data['SD_URL']['parameters'] is not None:
                 menu_options = [{'label': key, 'value': f'{base}{value}'} for

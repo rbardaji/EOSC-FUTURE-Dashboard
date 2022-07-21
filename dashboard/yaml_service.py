@@ -83,9 +83,8 @@ class YamlDataTransferObject:
         # Create a list with all the yaml-files in the directory
         yaml_list = [
             filename for filename in os.listdir(self._path)
-            if filename.split(".")[-1] == ".yaml"
+            if filename.split(".")[-1] == "yaml"
         ]
-
         for yaml_file in yaml_list:
             # Read the yaml-file
             yaml_data = read_and_validate_yaml(yaml_file)

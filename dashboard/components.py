@@ -49,3 +49,127 @@ main_layout = html.Div(
         ),
     ]
 )
+
+
+# Functions to make components
+def provider_title(provider):
+
+    provider_content = YDTO.get_provider_content(provider)
+    return html.A(
+        className='provider-title',
+        target='_blank',
+        children=[
+            html.Div(
+                className='tab-row-top',
+                children=[
+                    dcc.Markdown(
+                        className='title-text',
+                        children='**' + provider_content['SD_provider'] + '**'
+                    ),
+                    html.Img(
+                        className='provider-image',
+                        src=provider_content['SD_logo_url']
+                    )
+                ]
+            )
+        ]
+    )
+
+def provider_dropdown(provider):
+
+    provider_content = YDTO.get_provider_content(provider)
+    return dcc.Dropdown(
+        id=f'{provider}-dropdown',
+        className='provider-dropdown',
+        options=[
+            {'label': key, 'value': f'{provider_content["SD_URL"]}{value}'}
+            for key, value in provider_content['SD_URL']['parameters'].items()
+        ],
+        inputClassName='input-provider-dropdown',
+        labelClassName='label-provider-dropdown',
+        placeholder=f'Select {provider}'
+    )
+
+def provider_iframe(link):
+
+    if link.split('.')[-1] in ['png', 'jpg']:
+        return html.Img(
+            className='provider-image',
+            src=link
+        )
+    else:
+        return html.Iframe(
+            className='provider-iframe',
+            src=link,
+            sandbox='allow-same-origin'
+        )
+
+def provider_description(provider):
+
+    provider_content = YDTO.get_provider_content(provider)
+    return html.Div(
+        className='provider-description',
+        children=[
+            dcc.Markdown(
+                className='description-text',
+                children=provider_content['description']
+            )
+        ]
+    )
+
+def provider_license(provider):
+
+    provider_content = YDTO.get_provider_content(provider)
+    return html.Div(
+        className='provider-license',
+        children=[
+            dcc.Markdown(
+                className='license-text',
+                children='License :[' + provider_content['license']['name'] + \
+                     '](' + provider_content['license']['url'] + ')'
+            )
+        ]
+    )
+
+def provider_contact(provider):
+
+    provider_content = YDTO.get_provider_content(provider)
+    return html.Div(
+        className='provider-contact',
+        children=[
+            dcc.Markdown(
+                className='contact-text',
+                children='Contact : ' + provider_content['plugin_contact']
+            )
+        ]
+    )
+
+def provider_tabs(provider):
+
+    provider_content = YDTO.get_provider_content(provider)
+    return html.Div(
+        className='provider-tabs',
+        children=[
+            dcc.Tabs(
+                id=f'{provider}-tabs',
+                className='provider-tabs',
+                children=[
+                    dcc.Tab(
+                        id=f'{provider}-tab-1',
+                        label='Description',
+                        children=provider_description(provider)
+                    ),
+                    dcc.Tab(
+                        id=f'{provider}-tab-2',
+                        label='License',
+                        children=provider_license(provider)
+                    ),
+                    dcc.Tab(
+                        id=f'{provider}-tab-3',
+                        label='Contact',
+                        children=provider_contact(provider)
+                    )
+                ]
+            )
+        ]
+    )
